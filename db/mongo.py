@@ -35,7 +35,7 @@ class MongoDB:
     @classmethod
     async def create_indexes(cls):
         """Create necessary indexes for collections"""
-        if not cls.db:
+        if cls.db is None:  # Changed from: if not cls.db:
             return
         
         try:
@@ -64,7 +64,7 @@ class MongoDB:
     @classmethod
     def get_db(cls) -> AsyncIOMotorDatabase:
         """Get database instance"""
-        if not cls.db:
+        if cls.db is None:  # Changed from: if not cls.db:
             raise Exception("Database not initialized. Call connect_db() first.")
         return cls.db
 
