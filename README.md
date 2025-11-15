@@ -87,8 +87,8 @@ CollaLearn
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/collalearn.git
-cd collalearn
+git clone https://github.com/Lukerman/collabv2_bot.git
+cd collabv2_bot
 ```
 
 2. **Create virtual environment**
