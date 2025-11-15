@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Files - CollaLearn Admin{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Files Management</h1>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>File Name</th>
+                        <th>Type</th>
+                        <th>Room Code</th>
+                        <th>Uploader ID</th>
+                        <th>Tags</th>
+                        <th>Uploaded At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for file in files %}
+                    <tr>
+                        <td>{{ file.file_name or 'Unnamed' }}</td>
+                        <td><span class="badge bg-info">{{ file.file_type }}</span></td>
+                        <td><code>{{ file.room_code }}</code></td>
+                        <td>{{ file.uploader_id }}</td>
+                        <td>
+                            {% for tag in file.tags %}
+                            <span class="badge bg-secondary">{{ tag }}</span>
+                            {% endfor %}
+                            {% for tag in file.ai_tags %}
+                            <span class="badge bg-primary">🤖 {{ tag }}</span>
+                            {% endfor %}
+                        </td>
+                        <td>{{ file.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Pagination -->
+        {% if total_pages > 1 %}
+        <nav>
+            <ul class="pagination">
+                {% if page > 1 %}
+                <li class="page-item">
+                    <a class="page-link" href="/admin/files?page={{ page - 1 }}">Previous</a>
+                </li>
+                {% endif %}
+                
+                {% for p in range(1, total_pages + 1) %}
+                <li class="page-item {% if p == page %}active{% endif %}">
+                    <a class="page-link" href="/admin/files?page={{ p }}">{{ p }}</a>
+                </li>
+                {% endfor %}
+                
+                {% if page < total_pages %}
+                <li class="page-item">
+                    <a class="page-link" href="/admin/files?page={{ page + 1 }}">Next</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

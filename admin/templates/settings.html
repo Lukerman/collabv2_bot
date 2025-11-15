@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Settings - CollaLearn Admin{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">System Settings</h1>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">AI Configuration</h5>
+        <table class="table">
+            <tr>
+                <th>AI Model</th>
+                <td><code>{{ settings.ai_model }}</code></td>
+            </tr>
+            <tr>
+                <th>Max Tokens</th>
+                <td>{{ settings.ai_max_tokens }}</td>
+            </tr>
+            <tr>
+                <th>Temperature</th>
+                <td>{{ settings.ai_temperature }}</td>
+            </tr>
+            <tr>
+                <th>Daily Limit per User</th>
+                <td>{{ settings.ai_calls_per_day }} calls</td>
+            </tr>
+        </table>
+        
+        <div class="alert alert-info mt-4">
+            <strong>Note:</strong> To modify these settings, update your <code>.env</code> file and restart the application.
+        </div>
+    </div>
+</div>
+{% endblock %}

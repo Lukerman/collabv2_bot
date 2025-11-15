@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Users - CollaLearn Admin{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Users Management</h1>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Current Room</th>
+                        <th>Created At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.user_id }}</td>
+                        <td>@{{ user.username or 'N/A' }}</td>
+                        <td>{{ user.first_name }} {{ user.last_name or '' }}</td>
+                        <td>
+                            <span class="badge bg-{% if user.role == 'admin' %}danger{% else %}secondary{% endif %}">
+                                {{ user.role }}
+                            </span>
+                        </td>
+                        <td>{{ user.current_room_code or '-' }}</td>
+                        <td>{{ user.created_at.strftime('%Y-%m-%d') }}</td>
+                        <td>
+                            <form method="post" action="/admin/users/{{ user.user_id }}/role" class="d-inline">
+                                <select name="role" class="form-select form-select-sm d-inline w-auto" onchange="this.form.submit()">
+                                    <option value="user" {% if user.role == 'user' %}selected{% endif %}>User</option>
+                                    <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
+                                </select>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Pagination -->
+        {% if total_pages > 1 %}
+        <nav>
+            <ul class="pagination">
+                {% if page > 1 %}
+                <li class="page-item">
+                    <a class="page-link" href="/admin/users?page={{ page - 1 }}">Previous</a>
+                </li>
+                {% endif %}
+                
+                {% for p in range(1, total_pages + 1) %}
+                <li class="page-item {% if p == page %}active{% endif %}">
+                    <a class="page-link" href="/admin/users?page={{ p }}">{{ p }}</a>
+                </li>
+                {% endfor %}
+                
+                {% if page < total_pages %}
+                <li class="page-item">
+                    <a class="page-link" href="/admin/users?page={{ page + 1 }}">Next</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
