@@ -19,65 +19,65 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     
     welcome_message = f"""
-🎓 **Welcome to CollaLearn!**
+🎓 *Welcome to CollaLearn\\!*
 
-Hello {user.first_name}! CollaLearn is your AI-powered collaborative study platform.
+Hello {user.first_name}\\! CollaLearn is your AI\\-powered collaborative study platform\\.
 
-**What you can do:**
+*What you can do:*
 📚 Create or join study rooms
-📎 Upload study materials (PDFs, images, notes)
+📎 Upload study materials \\(PDFs, images, notes\\)
 🔍 Search files by tags and keywords
 🤖 Use AI to summarize, explain, and quiz yourself
 👥 Collaborate in groups
 
-**Quick Start:**
-1️⃣ Create a room: /create_room
+*Quick Start:*
+1️⃣ Create a room: `/create_room`
 2️⃣ Upload your files
 3️⃣ Tag them for easy search
 4️⃣ Use AI commands on your materials
 
-Type /help for detailed command list.
+Type `/help` for detailed command list\\.
 """
     
-    await update.message.reply_text(welcome_message, parse_mode="Markdown")
+    await update.message.reply_text(welcome_message, parse_mode="MarkdownV2")
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle /help command"""
     help_text = """
-📖 **CollaLearn Commands**
+📖 *CollaLearn Commands*
 
-**Room Management:**
-• `/create_room` - Create a new study room
-• `/join_room <CODE>` - Join an existing room
-• `/my_room` - View your current room info
-• `/leave_room` - Leave current room
+*Room Management:*
+• `/create_room` \\- Create a new study room
+• `/join_room <CODE>` \\- Join an existing room
+• `/my_room` \\- View your current room info
+• `/leave_room` \\- Leave current room
 
-**File Management:**
-• Send any file to upload (PDF, image, doc)
-• `/add_tags <tags>` - Reply to a file to add tags
-• `/search <query>` - Search files in current room
+*File Management:*
+• Send any file to upload \\(PDF, image, doc\\)
+• `/add_tags <tags>` \\- Reply to a file to add tags
+• `/search <query>` \\- Search files in current room
 
-**AI Features:**
-• `/summarise` or `/summarize` - Reply to content to get summary
-• `/explain` - Reply to content for simple explanation
-• `/quiz [number]` - Generate MCQs from content
+*AI Features:*
+• `/summarise` or `/summarize` \\- Reply to content to get summary
+• `/explain` \\- Reply to content for simple explanation
+• `/quiz [number]` \\- Generate MCQs from content
 
-**Group Features (for group admins):**
-• `/connect_room <CODE>` - Link this group to a room
-• `/disconnect_room` - Unlink group from room
+*Group Features \\(for group admins\\):*
+• `/connect_room <CODE>` \\- Link this group to a room
+• `/disconnect_room` \\- Unlink group from room
 
-**Other:**
-• `/help` - Show this help message
-• `/start` - Restart bot
+*Other:*
+• `/help` \\- Show this help message
+• `/start` \\- Restart bot
 
-**Tips:**
+*Tips:*
 ✨ Reply to any file or message with AI commands
 🏷️ Use tags like: "chapter1, physics, important"
 🔍 Search by tags, filenames, or content
 """
     
-    await update.message.reply_text(help_text, parse_mode="Markdown")
+    await update.message.reply_text(help_text, parse_mode="MarkdownV2")
 
 
 # Handler registration
